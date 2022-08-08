@@ -20,7 +20,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Data.Repositories
         }
         public Task<Category> GetCategoryById(long id)
         {
-            Devon4NetLogger.Debug($"GetDishByID method from repository Dishservice with value : {id}");
+            Devon4NetLogger.Debug($"GetCategoryByID method from repository Categoryservice with value : {id}");
             return GetFirstOrDefault(t => t.Id == id);
         }
 

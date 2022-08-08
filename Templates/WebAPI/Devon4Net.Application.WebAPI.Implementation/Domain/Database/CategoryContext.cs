@@ -5,7 +5,8 @@ namespace Devon4Net.Application.WebAPI.Implementation.Domain.Database
 {
     public class CategoryContext : DbContext
     {
-        public CategoryContext(DbContextOptions<CategoryContext> options): base(options)
+        public CategoryContext(DbContextOptions<CategoryContext> options)
+            : base(options)
         {
         }
 
