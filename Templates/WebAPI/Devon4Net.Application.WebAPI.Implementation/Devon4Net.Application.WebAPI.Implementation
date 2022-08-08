@@ -136,6 +136,34 @@
             TodoService interface
             </summary>
         </member>
+        <member name="M:Devon4Net.Application.WebAPI.Implementation.Business.DishCategoryManagement.Controllers.DishCategoryController.#ctor(Devon4Net.Application.WebAPI.Implementation.Business.DishCategoryManagement.Service.IDishCategoryService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="DishCategoryService"></param>
+        </member>
+        <member name="T:Devon4Net.Application.WebAPI.Implementation.Business.DishCategoryManagement.Converters.DishCategoryConverter">
+            <summary>
+            DishConverter
+            </summary>
+        </member>
+        <member name="M:Devon4Net.Application.WebAPI.Implementation.Business.DishCategoryManagement.Converters.DishCategoryConverter.ModelToDto(Devon4Net.Application.WebAPI.Implementation.Domain.Entities.DishCategory)">
+            <summary>
+            ModelToDto transformation
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Devon4Net.Application.WebAPI.Implementation.Business.DishCategoryManagement.Service.DishCategoryService">
+            <summary>
+            Service implementation
+            </summary>
+        </member>
+        <member name="T:Devon4Net.Application.WebAPI.Implementation.Business.DishCategoryManagement.Service.IDishCategoryService">
+            <summary>
+            TodoService interface
+            </summary>
+        </member>
         <member name="M:Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Controllers.DishController.#ctor(Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Service.IDishService)">
             <summary>
             Constructor
