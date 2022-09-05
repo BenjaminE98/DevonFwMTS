@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
 {

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
-
 {
     [Owned]
     public class Image

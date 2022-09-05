@@ -1,6 +1,5 @@
 using Devon4Net.Application.WebAPI.Implementation.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Domain.Database
 {

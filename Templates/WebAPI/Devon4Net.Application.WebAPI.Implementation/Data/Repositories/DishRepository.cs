@@ -4,7 +4,6 @@ using Devon4Net.Infrastructure.Logger.Logging;
 using Devon4Net.Application.WebAPI.Implementation.Domain.Database;
 using Devon4Net.Application.WebAPI.Implementation.Domain.Entities;
 using Devon4Net.Application.WebAPI.Implementation.Domain.RepositoryInterfaces;
-using Devon4Net.Infrastructure.Logger.Logging;
 using Newtonsoft.Json;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Data.Repositories

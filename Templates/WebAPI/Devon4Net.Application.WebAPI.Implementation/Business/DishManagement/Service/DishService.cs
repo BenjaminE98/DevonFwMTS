@@ -23,29 +23,11 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Se
 
         public async Task<List<Dish>> GetDishesMatchingCriterias(decimal maxPrice, int minLikes, string searchBy, IList<long> categoryIdList)
         {
-            Devon4NetLogger.Debug("GetDish from DishService");
-
-            /*
-            var includes = new List<string>
-            {
-                "DishCategory",
-                "DishCategory.IdCategoryNavigation",
-                "DishIngredient",
-                "DishIngredient.IdIngredientNavigation",
-                "IdImageNavigation"
-            };
-            */
-
             var result = await _dishRepository.Get().ConfigureAwait(false);
-
-            foreach (var dish in result)
-            {
-                        Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject( dish, Formatting.Indented ));
-            }
 
             if (categoryIdList.Any())
             {
-                //result = result.Where(r => r.DishCategory.Any(a => categoryIdList.Contains(a.IdCategory))).ToList();
+                result = result.Where(r => r.Categories.Any(a => categoryIdList.Contains(a.Id))).ToList();
             }
 
             if (!string.IsNullOrWhiteSpace(searchBy))

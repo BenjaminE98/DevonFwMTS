@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-
-namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
+﻿namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
 {
 public partial class Dish
     {

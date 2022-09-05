@@ -64,13 +64,8 @@ public class DishConverter
                     result.Add(new CategoryDto
                     {
                         Id = item.Id,
-                        /*
-                        Description = item.IdCategoryNavigation.Description,
-                        ModificationCounter = item.IdCategoryNavigation.ModificationCounter,
-                        Revision = 1,
-                        Name = item.IdCategoryNavigation.Name,
-                        ShowOrder = item.IdCategoryNavigation.ShowOrder
-                        */
+                        Description = item.Description,
+                        Name = item.Name,
                     });
 
                 }
