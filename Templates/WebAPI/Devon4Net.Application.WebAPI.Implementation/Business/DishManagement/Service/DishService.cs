@@ -5,18 +5,18 @@ using Devon4Net.Domain.UnitOfWork.UnitOfWork;
 using Devon4Net.Application.WebAPI.Implementation.Domain.Database;
 using Devon4Net.Application.WebAPI.Implementation.Domain.Entities;
 using Devon4Net.Application.WebAPI.Implementation.Domain.RepositoryInterfaces;
+using Newtonsoft.Json;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Service
 {
     /// <summary>
     /// Service implementation
     /// </summary>
-    public class DishService : Service<ModelContext>, IDishService
+    public class DishService : Service<DishContext>, IDishService
     {
         private readonly IDishRepository _dishRepository;
 
-        
-        public DishService(IUnitOfWork<ModelContext> uoW) : base(uoW)
+        public DishService(IUnitOfWork<DishContext> uoW) : base(uoW)
         {
             _dishRepository = uoW.Repository<IDishRepository>();
         }
@@ -25,20 +25,27 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Se
         {
             Devon4NetLogger.Debug("GetDish from DishService");
 
+            /*
             var includes = new List<string>
             {
                 "DishCategory",
-                "DishCategory.IdCategoryNavigation", 
+                "DishCategory.IdCategoryNavigation",
                 "DishIngredient",
                 "DishIngredient.IdIngredientNavigation",
                 "IdImageNavigation"
             };
+            */
 
-            var result = await _dishRepository.GetAllNested(includes).ConfigureAwait(false);
+            var result = await _dishRepository.Get().ConfigureAwait(false);
+
+            foreach (var dish in result)
+            {
+                        Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject( dish, Formatting.Indented ));
+            }
 
             if (categoryIdList.Any())
             {
-                result = result.Where(r => r.DishCategory.Any(a => categoryIdList.Contains(a.IdCategory))).ToList();
+                //result = result.Where(r => r.DishCategory.Any(a => categoryIdList.Contains(a.IdCategory))).ToList();
             }
 
             if (!string.IsNullOrWhiteSpace(searchBy))
@@ -53,7 +60,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Se
 
             if (minLikes > 0)
             {
-                   
+
             }
 
             return result.ToList();
@@ -62,7 +69,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Se
         public Task<Dish> GetDishById(long id)
         {
             Devon4NetLogger.Debug($"GetDishById method from service Dishservice with value : {id}");
-            
+
             return _dishRepository.GetDishById(id);
         }
     }

@@ -1,6 +1,4 @@
 ﻿using Devon4Net.Application.WebAPI.Configuration;
-using Devon4Net.Application.WebAPI.Implementation.Business.EmployeeManagement.Dto;
-using Devon4Net.Application.WebAPI.Implementation.Business.EmployeeManagement.Validators;
 using Devon4Net.Application.WebAPI.Implementation.Business.MediatRManagement.Commands;
 using Devon4Net.Application.WebAPI.Implementation.Business.MediatRManagement.Dto;
 using Devon4Net.Application.WebAPI.Implementation.Business.MediatRManagement.Handlers;
@@ -21,7 +19,6 @@ using Devon4Net.Infrastructure.MediatR.Samples.Query;
 using Devon4Net.Infrastructure.RabbitMQ.Options;
 using Devon4Net.Infrastructure.RabbitMQ.Samples.Handllers;
 using FluentValidation;
-using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -82,7 +79,6 @@ namespace Devon4Net.Application.WebAPI.Implementation.Configuration
         private static void SetupFluentValidators(IServiceCollection services)
         {
             services.AddFluentValidation< IValidator<TodoDto>, TodosFluentValidator>();
-            services.AddFluentValidation<IValidator<EmployeeDto>, EmployeeFluentValidator>();
         }
 
         /// <summary>
@@ -96,9 +92,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Configuration
         private static void SetupDatabase(IServiceCollection services, IConfiguration configuration)
         {
             services.SetupDatabase<TodoContext>(configuration, "Default", DatabaseType.InMemory).ConfigureAwait(false);
-            services.SetupDatabase<EmployeeContext>(configuration, "Employee", DatabaseType.InMemory).ConfigureAwait(false);
-            services.SetupDatabase<ModelContext>(configuration, "MyThaiStar", DatabaseType.SqlServer).ConfigureAwait(false);
-            services.SetupDatabase<CategoryContext>(configuration, "MyThaiStar", DatabaseType.SqlServer).ConfigureAwait(false);
+            services.SetupDatabase<DishContext>(configuration, "MyThaiStar", DatabaseType.InMemory, ServiceLifetime.Singleton).ConfigureAwait(false);
         }
 
         private static void SetupJwtPolicies(IServiceCollection services)

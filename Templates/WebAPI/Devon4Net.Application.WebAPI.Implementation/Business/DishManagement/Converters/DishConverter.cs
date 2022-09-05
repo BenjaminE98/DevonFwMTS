@@ -19,13 +19,13 @@ public class DishConverter
             return new DishDtoResult
             {
                 dish = DishToApi(item),
-                categories = GetDishCategories(item.DishCategory),
-                extras = GetDishExtras(item.DishIngredient),
-                image = GetImageDtoFromImage(item.IdImageNavigation)
+                categories = GetDishCategories(item.Categories),
+                image = GetImageDtoFromImage(item.Image),
+                extras = GetDishExtras(item.Ingredients),
             };
         }
 
-        private static List<ExtraDto> GetDishExtras(ICollection<DishIngredient> itemDishIngredient)
+        private static List<ExtraDto> GetDishExtras(ICollection<Ingredient> itemDishIngredient)
         {
             var result = new List<ExtraDto>();
 
@@ -37,12 +37,9 @@ public class DishConverter
                 {
                     result.Add(new ExtraDto
                     {
-                        Id = item.IdIngredient,
-                        Description = item.IdIngredientNavigation.Description,
-                        Price = item.IdIngredientNavigation.Price,
-                        ModificationCounter = item.ModificationCounter,
-                        Revision = 1,
-                        Name = item.IdIngredientNavigation.Name
+                        Description = item.Description,
+                        Price = item.Price,
+                        Name = item.Name
                     });
                 }
             }
@@ -54,7 +51,7 @@ public class DishConverter
             return result;
         }
 
-        private static List<CategoryDto> GetDishCategories(ICollection<DishCategory> itemDishCategory)
+        private static List<CategoryDto> GetDishCategories(ICollection<Category> itemDishCategory)
         {
             var result = new List<CategoryDto>();
 
@@ -66,12 +63,14 @@ public class DishConverter
                 {
                     result.Add(new CategoryDto
                     {
-                        Id = item.IdCategory,
+                        Id = item.Id,
+                        /*
                         Description = item.IdCategoryNavigation.Description,
                         ModificationCounter = item.IdCategoryNavigation.ModificationCounter,
                         Revision = 1,
                         Name = item.IdCategoryNavigation.Name,
                         ShowOrder = item.IdCategoryNavigation.ShowOrder
+                        */
                     });
 
                 }
@@ -92,7 +91,7 @@ public class DishConverter
                 Description = item.Description,
                 Name = item.Name,
                 Price = item.Price,
-                ImageId = item.IdImage,
+                //ImageId = item.IdImage,
                 ModificationCounter = 0
             };
         }
@@ -107,10 +106,10 @@ public class DishConverter
                 result = new ImageDto
                 {
                     Content = image.Content,
-                    ModificationCounter = image.ModificationCounter,
+                    //ModificationCounter = image.ModificationCounter,
                     MimeType = image.MimeType,
                     Name = image.Name,
-                    Id = image.Id,
+                    //Id = image.Id,
                     ContentType = image.ContentType == 0 ? "Binary" : "Url",
                     Revision = 1
                 };

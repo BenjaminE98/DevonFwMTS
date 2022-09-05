@@ -1,28 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
-
 {
 public partial class Dish
     {
         public Dish()
         {
-            DishCategory = new HashSet<DishCategory>();
-            DishIngredient = new HashSet<DishIngredient>();
-            OrderLine = new HashSet<OrderLine>();
-            UserFavourite = new HashSet<UserFavourite>();
+            Categories = new List<Category>();
+            //DishIngredient = new List<DishIngredient>();
         }
 
         public long Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal? Price { get; set; }
-        public long? IdImage { get; set; }
 
-        public Image IdImageNavigation { get; set; }
-        public ICollection<DishCategory> DishCategory { get; set; }
-        public ICollection<DishIngredient> DishIngredient { get; set; }
-        public ICollection<OrderLine> OrderLine { get; set; }
-        public ICollection<UserFavourite> UserFavourite { get; set; }
+        public Image Image { get; set; }
+        public ICollection<Category> Categories { get; set; }
+        public ICollection<Ingredient> Ingredients { get; set; }
     }
 }
