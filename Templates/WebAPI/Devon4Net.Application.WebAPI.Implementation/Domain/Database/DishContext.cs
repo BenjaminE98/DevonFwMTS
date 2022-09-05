@@ -32,11 +32,8 @@ namespace Devon4Net.Application.WebAPI.Implementation.Domain.Database
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Image>().HasNoKey();
-            modelBuilder.Entity<Category>().HasNoKey();
-
-            //modelBuilder.Entity<Dish>().OwnsOne(a => a.Image);
-            //modelBuilder.Entity<Dish>().OwnsMany(a => a.Categories);
+            modelBuilder.Entity<Dish>().OwnsOne(a => a.Image);
+            modelBuilder.Entity<Dish>().OwnsMany(a => a.Categories);
         }
     }
 }

@@ -8,7 +8,7 @@ public partial class Dish
         public Dish()
         {
             Categories = new List<Category>();
-            //DishIngredient = new List<DishIngredient>();
+            Ingredients = new List<Ingredient>();
         }
 
         public long Id { get; set; }
