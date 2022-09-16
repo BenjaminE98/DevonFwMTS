@@ -37,7 +37,6 @@ namespace Devon4Net.Application.WebAPI.Implementation.Data.Repositories
             return GetFirstOrDefault(t => t.Id == id);
         }
 
-
         public async Task<IList<Dish>> GetAllNested(IList<string> nestedProperties, Expression<Func<Dish, bool>> predicate = null)
         {
             return await Get(nestedProperties, predicate);
