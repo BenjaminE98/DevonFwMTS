@@ -7,21 +7,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  enforce-code-formatting:
-    name: validate-code-formatting
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-    - name: enforce code-formatting
-      run: dotnet format
-
   build-and-test:
     name: build-and-test-${{matrix.os}}
-    needs: enforce-code-formatting
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
