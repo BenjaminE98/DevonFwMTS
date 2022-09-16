@@ -18,10 +18,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Run .NET Code Analysis
-      uses: dotnet/code-analysis@v2
+      uses: dotnet/code-analysis@v1
       id: code-analysis
       with:
-        build-breaking: true
+        build-breaking: false
+        all-categories: all
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
