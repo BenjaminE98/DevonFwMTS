@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  code-style-validation:
 
     runs-on: ubuntu-latest
 
