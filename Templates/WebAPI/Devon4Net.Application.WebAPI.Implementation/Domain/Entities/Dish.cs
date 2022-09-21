@@ -1,6 +1,6 @@
 ﻿namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
 {
-public partial class Dish
+    public partial class Dish
     {
         public Dish()
         {
