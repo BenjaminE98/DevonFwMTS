@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+    tier: frontend
+spec:
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: http
+    name: http
+  selector:
+    app: frontend
+    tier: frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: frontend
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: frontend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/backend-net: "true"
+        io.kompose.service: frontend
+    spec:
+      containers:
+        - image: devonfwmts_frontend:latest
+          imagePullPolicy: Never
+          name: angular
+          resources: {}
+      restartPolicy: Always
+status: {}

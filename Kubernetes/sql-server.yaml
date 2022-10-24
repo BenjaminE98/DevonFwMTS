@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: sql-server
+  name: sql-server
+spec:
+  ports:
+    - name: "1433"
+      port: 1433
+      targetPort: 1433
+  selector:
+    io.kompose.service: sql-server
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: sql-server
+  name: sql-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: sql-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/backend-net: "true"
+        io.kompose.service: sql-server
+    spec:
+      containers:
+        - env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: SA_PASSWORD
+              value: C@pgemini2017
+          image: devonfwmts_sql-server:latest
+          imagePullPolicy: Never
+          name: sql-server
+          ports:
+            - containerPort: 1433
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/opt/mssql
+              name: mssql-volume
+      restartPolicy: Always
+      volumes:
+        - name: mssql-volume
+          persistentVolumeClaim:
+            claimName: mssql-volume
+status: {}
